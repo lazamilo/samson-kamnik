@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="sl" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Izdelki · Samson Kamnik</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="assets/img/mark.png">
+<link rel="preload" href="assets/fonts/MaisonNeue-Medium.otf" as="font" type="font/otf" crossorigin>
+<link rel="stylesheet" href="assets/css/style.css?v=5">
+</head>
+<body data-page="cat">
+
+<header class="hdr is-solid" id="top">
+  <a class="logo" href="index.html" aria-label="Samson Kamnik, domov"><img src="assets/img/samson_kamnik_logo.png" alt="Samson Kamnik" width="480" height="112"></a>
+  <nav class="nav" aria-label="Glavna navigacija">
+    <a href="index.html#o-podjetju" data-home="#o-podjetju">O podjetju</a>
+    <button type="button" data-mega aria-expanded="false" aria-haspopup="true">Izdelki <svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 4l4 4 4-4"/></svg></button>
+    <a href="index.html#reference" data-home="#reference">Reference</a>
+    <a href="index.html#novosti" data-home="#novosti">Novosti</a>
+    <a href="index.html#kontakt" data-home="#kontakt">Kontakt</a>
+  </nav>
+  <div class="hdr-right">
+    <a class="tel link" href="tel:+38618317255">01 83 17 255</a>
+    <button class="burger" type="button" aria-label="Meni"><span></span></button>
+  </div>
+</header>
+<div class="mega" role="menu"></div>
+<div class="mega-scrim"></div>
+
+<div class="mmenu" aria-label="Meni">
+  <button class="mm-close" type="button" aria-label="Zapri">×</button>
+  <a href="index.html#o-podjetju" data-home="#o-podjetju">O podjetju</a>
+  <a href="index.html#izdelki" data-home="#izdelki">Izdelki</a>
+  <div class="mm-cats"></div>
+  <a href="index.html#reference" data-home="#reference">Reference</a>
+  <a href="index.html#novosti" data-home="#novosti">Novosti</a>
+  <a href="index.html#kontakt" data-home="#kontakt">Kontakt</a>
+</div>
+
+<main>
+  <section class="cat-hero">
+    <div class="cat-copy">
+      <h1 class="h-xl" id="c-name"></h1>
+      <p class="lead" id="c-intro"></p>
+      <div class="cat-meta">
+        <div><div class="n" id="c-count"></div><p>izdelkov</p></div>
+        <div><div class="n" id="c-groups"></div><p>skupin</p></div>
+      </div>
+      <div class="hero-ctas" id="c-ctas"></div>
+    </div>
+    <div class="cat-img"><img id="c-img" data-par="5" alt=""></div>
+  </section>
+
+  <section class="sec">
+    <div class="prod">
+      <nav class="prod-nav" id="c-nav" aria-label="Skupine izdelkov"></nav>
+      <div>
+        <div class="search"><input id="c-search" type="search" placeholder="Poiščite izdelek" aria-label="Poiščite izdelek"></div>
+        <div id="c-groups-list"></div>
+        <p class="empty" id="c-empty">Ni zadetkov. Pokličite nas na 01 83 17 255, morda ga imamo na zalogi.</p>
+      </div>
+    </div>
+  </section>
+
+  <a class="next" id="c-next"><img alt="" loading="lazy"><div class="nx"><div><p>Naslednje področje</p><div class="h-xl"></div></div></div></a>
+</main>
+
+<footer class="ftr">
+  <div class="ftr-top">
+    <div><a class="logo" href="index.html"><img src="assets/img/samson_kamnik_logo.png" alt="Samson Kamnik" width="480" height="112"></a></div>
+    <div><h4>Izdelki</h4><ul data-foot-cats></ul></div>
+    <div><h4>&nbsp;</h4><ul data-foot-cats2></ul></div>
+    <div><h4>Spletne trgovine</h4><ul>
+      <li><a href="http://www.revivo.si" target="_blank" rel="noopener">revivo.si</a></li>
+      <li><a href="http://www.naravno.info" target="_blank" rel="noopener">naravno.info</a></li>
+      <li><a href="http://www.kompoziti.si" target="_blank" rel="noopener">kompoziti.si</a></li>
+      <li><a href="http://www.naredi.eu" target="_blank" rel="noopener">naredi.eu</a></li>
+      <li><a href="https://www.facebook.com/SamsonKamnik" target="_blank" rel="noopener">Facebook</a></li>
+    </ul></div>
+  </div>
+  <div class="ftr-bot">
+    <span>© 2026 Samson Kamnik d.o.o. · Kovinarska cesta 28, 1241 Kamnik</span>
+    <span>ID za DDV SI42870780 · Matična številka 5596998000</span>
+  </div>
+</footer>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/gsap.min.js"></script>
+<script src="assets/js/ScrollTrigger.min.js"></script>
+<script src="assets/js/lenis.min.js"></script>
+<script>
+(function(){
+  var D = window.SK;
+  var SHOP = {restavratorstvo:0,naravni:1,svecarstvo:1,keramika:1,cebelarstvo:1,kompoziti:2,prototipi:2,hobby:3,efekti:3};
+  var k = new URLSearchParams(location.search).get('k');
+  var idx = Math.max(0, D.cats.findIndex(function(c){return c.key===k;}));
+  var c = D.cats[idx];
+  function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;');}
+
+  window.SK_page = function(){
+    var U = window.SK_util, I = window.SK_ICONS;
+    document.title = c.name + ' · Samson Kamnik';
+    document.getElementById('c-name').textContent = c.name;
+    document.getElementById('c-intro').textContent = c.intro;
+    document.getElementById('c-count').textContent = c.count;
+    document.getElementById('c-groups').textContent = c.groups.length;
+    var img = document.getElementById('c-img'); img.src = 'assets/img/'+c.key+'.jpg';
+    var s = SHOP[c.key], ctas = '';
+    if (s !== undefined) ctas += '<a class="btn" href="'+D.shops[s][1]+'" target="_blank" rel="noopener">Naročite na '+D.shops[s][0]+' '+I.OUT+'</a>';
+    else ctas += '<a class="btn" href="index.html#kontakt">Pošljite povpraševanje '+I.ARROW+'</a>';
+    ctas += '<a class="link" href="tel:+38618317255">01 83 17 255</a>';
+    document.getElementById('c-ctas').innerHTML = ctas;
+
+    document.getElementById('c-nav').innerHTML = c.groups.map(function(g,i){return '<a href="#g'+i+'">'+esc(g.g)+'</a>';}).join('');
+    document.getElementById('c-groups-list').innerHTML = c.groups.map(function(g,i){
+      return '<div class="grp" id="g'+i+'"><h2>'+esc(g.g)+'</h2><div class="items">'+g.items.map(function(it){
+        return '<div class="item" data-q="'+esc((it[0]+' '+it[1]).toLowerCase())+'"><b>'+esc(it[0])+'</b>'+(it[1]?'<span>'+esc(it[1])+'</span>':'')+'</div>';
+      }).join('')+'</div></div>';
+    }).join('');
+
+    var q = document.getElementById('c-search'), empty = document.getElementById('c-empty');
+    q.addEventListener('input', function(){
+      var v = q.value.trim().toLowerCase(), any = false;
+      document.querySelectorAll('.grp').forEach(function(g){
+        var n = 0;
+        g.querySelectorAll('.item').forEach(function(it){ var on = !v || it.dataset.q.indexOf(v) > -1; it.style.display = on ? '' : 'none'; if (on) n++; });
+        g.style.display = n ? '' : 'none'; if (n) any = true;
+      });
+      empty.style.display = any ? 'none' : 'block';
+      if (window.ScrollTrigger) ScrollTrigger.refresh();
+    });
+
+    var nx = D.cats[(idx+1) % D.cats.length], a = document.getElementById('c-next');
+    a.href = U.catUrl(nx); a.querySelector('img').src = 'assets/img/'+nx.key+'.jpg'; a.querySelector('.h-xl').textContent = nx.name;
+  };
+
+  window.SK_anim = function(gsap, ST, lenis){
+    gsap.from('#c-name, #c-intro, .cat-meta, #c-ctas',{opacity:0,y:30,duration:1,ease:'power3.out',stagger:.08,delay:.1});
+    gsap.from('#c-img',{scale:1.1,duration:1.8,ease:'power3.out'});
+    document.querySelectorAll('#c-nav a').forEach(function(a){
+      a.addEventListener('click',function(e){e.preventDefault();lenis.scrollTo(a.getAttribute('href'),{offset:-(document.querySelector('.hdr').offsetHeight+20)});});
+    });
+    document.querySelectorAll('.grp').forEach(function(g,i){
+      ST.create({trigger:g,start:'top 40%',end:'bottom 40%',onToggle:function(s){ if(s.isActive){ document.querySelectorAll('#c-nav a').forEach(function(a,j){a.classList.toggle('on',i===j);}); } }});
+    });
+  };
+})();
+</script>
+<script src="assets/js/main.js?v=5"></script>
+</body>
+</html>
